@@ -55,7 +55,7 @@ export function HeroSection({ heroImages }: HeroSectionProps) {
   }, []);
 
   return (
-    <section ref={componentRef} className="relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
+    <section ref={componentRef} className="preloader-target relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
       <Carousel
         opts={{ loop: true }}
         className="w-full h-full"

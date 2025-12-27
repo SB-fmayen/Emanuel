@@ -87,3 +87,10 @@
     @apply font-body;
   }
 }
+
+@layer components {
+  /* This ensures the preloader doesn't cause a flash of unstyled content */
+  .preloader-container {
+    background-color: hsl(var(--background));
+  }
+}

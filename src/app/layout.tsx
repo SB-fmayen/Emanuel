@@ -1,20 +1,35 @@
+'use client';
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { AppHeader } from '@/components/layout/header';
 import { AppFooter } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
+import { usePathname } from 'next/navigation';
+import { Preloader } from '@/components/preloader';
+import { useEffect, useState } from 'react';
 
-export const metadata: Metadata = {
-  title: 'Emanuel Institute Hub',
-  description: 'Website for Instituto Básico por Cooperativa Emanuel',
-};
+// Metadata is defined in a generateMetadata function in a server component
+// export const metadata: Metadata = {
+//   title: 'Emanuel Institute Hub',
+//   description: 'Website for Instituto Básico por Cooperativa Emanuel',
+// };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+  const [isLoading, setIsLoading] = useState(isHome);
+
+  useEffect(() => {
+    if (isLoading) return;
+  }, [isLoading]);
+
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -25,11 +40,15 @@ export default function RootLayout({
       <body
         className={cn('min-h-screen bg-background font-body antialiased')}
       >
-        <div className="relative flex min-h-screen flex-col">
-          <AppHeader />
-          <main className="flex-1">{children}</main>
-          <AppFooter />
-        </div>
+        {isLoading && isHome ? (
+          <Preloader onFinish={() => setIsLoading(false)} />
+        ) : (
+          <div className="relative flex min-h-screen flex-col">
+            <AppHeader />
+            <main className="flex-1">{children}</main>
+            <AppFooter />
+          </div>
+        )}
         <Toaster />
       </body>
     </html>
