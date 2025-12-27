@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Target, Vision, Heart } from 'lucide-react';
+import { Target, Eye, Heart } from 'lucide-react';
 import { schoolInfo, placeholderImages } from '@/lib/data';
 
 export default function AboutPage() {
@@ -70,7 +70,7 @@ export default function AboutPage() {
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center gap-4">
-                <Vision className="w-10 h-10 text-primary" />
+                <Eye className="w-10 h-10 text-primary" />
                 <CardTitle className="font-headline text-2xl">Visión</CardTitle>
               </CardHeader>
               <CardContent>
