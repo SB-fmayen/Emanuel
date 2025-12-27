@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { placeholderImages, schoolInfo } from "@/lib/data";
 import { Paintbrush, Atom, Cpu, Dumbbell, Library, Music } from "lucide-react";
+import { AnimateOnScroll } from "@/components/animate-on-scroll";
 
 const activityIcons = {
   Deportes: <Dumbbell className="w-8 h-8" />,
@@ -31,67 +32,77 @@ export default function ActivitiesPage() {
     <>
       <section className="bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 py-16 text-center">
-          <h1 className="text-4xl md:text-5xl font-headline font-bold">
-            Actividades y Servicios
-          </h1>
-          <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
-            Fomentamos un desarrollo integral a través de una rica oferta de actividades extracurriculares y servicios de apoyo.
-          </p>
+          <AnimateOnScroll>
+            <h1 className="text-4xl md:text-5xl font-headline font-bold">
+              Actividades y Servicios
+            </h1>
+            <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
+              Fomentamos un desarrollo integral a través de una rica oferta de actividades extracurriculares y servicios de apoyo.
+            </p>
+          </AnimateOnScroll>
         </div>
       </section>
 
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-headline font-bold text-center mb-12">
-            Nuestras Actividades
-          </h2>
+          <AnimateOnScroll>
+            <h2 className="text-3xl font-headline font-bold text-center mb-12">
+              Nuestras Actividades
+            </h2>
+          </AnimateOnScroll>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {schoolInfo.activities.map((activity) => {
+            {schoolInfo.activities.map((activity, index) => {
               const image = activityImages[activity as keyof typeof activityImages];
               return (
-                <Card key={activity} className="overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1">
-                  {image && (
-                    <div className="relative aspect-video">
-                      <Image
-                        src={image.imageUrl}
-                        alt={activity}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={image.imageHint}
-                      />
-                    </div>
-                  )}
-                  <CardHeader>
-                    <div className="flex items-center gap-4">
-                      <div className="bg-primary/10 text-primary p-3 rounded-full">
-                         {activityIcons[activity as keyof typeof activityIcons]}
+                <AnimateOnScroll key={activity} delay={index * 0.1}>
+                  <Card className="overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1 h-full">
+                    {image && (
+                      <div className="relative aspect-video">
+                        <Image
+                          src={image.imageUrl}
+                          alt={activity}
+                          fill
+                          className="object-cover"
+                          data-ai-hint={image.imageHint}
+                        />
                       </div>
-                      <CardTitle className="font-headline text-2xl">{activity}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                        Espacios dedicados para el desarrollo de talento y habilidades en {activity.toLowerCase()}.
-                    </p>
-                  </CardContent>
-                </Card>
+                    )}
+                    <CardHeader>
+                      <div className="flex items-center gap-4">
+                        <div className="bg-primary/10 text-primary p-3 rounded-full">
+                          {activityIcons[activity as keyof typeof activityIcons]}
+                        </div>
+                        <CardTitle className="font-headline text-2xl">{activity}</CardTitle>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground">
+                          Espacios dedicados para el desarrollo de talento y habilidades en {activity.toLowerCase()}.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </AnimateOnScroll>
               )
             })}
           </div>
 
-          <h2 className="text-3xl font-headline font-bold text-center mt-24 mb-12">
-            Nuestros Servicios
-          </h2>
+          <AnimateOnScroll className="mt-24">
+            <h2 className="text-3xl font-headline font-bold text-center mb-12">
+              Nuestros Servicios
+            </h2>
+          </AnimateOnScroll>
           <div className="grid gap-8 md:grid-cols-3 max-w-4xl mx-auto">
-             {schoolInfo.services.map((service) => (
-                <Card key={service} className="text-center">
-                    <CardHeader>
-                        <CardTitle>{service}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-muted-foreground">Ofrecemos {service.toLowerCase()} para la comodidad y bienestar de nuestra comunidad educativa.</p>
-                    </CardContent>
-                </Card>
+             {schoolInfo.services.map((service, index) => (
+                <AnimateOnScroll key={service} delay={index * 0.1}>
+                  <Card className="text-center h-full">
+                      <CardHeader>
+                          <CardTitle>{service}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                          <p className="text-muted-foreground">Ofrecemos {service.toLowerCase()} para la comodidad y bienestar de nuestra comunidad educativa.</p>
+                      </CardContent>
+                  </Card>
+                </AnimateOnScroll>
             ))}
           </div>
         </div>
