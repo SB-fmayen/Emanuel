@@ -16,64 +16,18 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
 import { placeholderImages } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { blogPosts } from '@/lib/data';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
+import { HeroSection } from '@/components/hero-section';
 
 export default function Home() {
   const heroImages = placeholderImages.filter(p => p.id.startsWith('hero-'));
 
   return (
     <div className="flex flex-col min-h-dvh">
-      <section className="relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center">
-        <Carousel
-          opts={{ loop: true }}
-          className="w-full h-full"
-        >
-          <CarouselContent className="h-full">
-            {heroImages.map((image, index) => (
-              <CarouselItem key={index}>
-                <div className="relative h-full w-full">
-                  <Image
-                    src={image.imageUrl}
-                    alt={image.description}
-                    fill
-                    className="object-cover"
-                    priority={index === 0}
-                    data-ai-hint={image.imageHint}
-                  />
-                  <div className="absolute inset-0 bg-black/50" />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <div className="absolute inset-x-0 bottom-10 z-10 hidden md:flex justify-center">
-            <CarouselPrevious className="static translate-y-0 mx-2" />
-            <CarouselNext className="static translate-y-0 mx-2" />
-          </div>
-        </Carousel>
-        <div className="absolute z-10 text-center text-white p-4">
-          <h1 className="text-4xl md:text-6xl font-headline font-bold drop-shadow-lg">
-            Instituto Emanuel
-          </h1>
-          <p className="mt-4 text-lg md:text-2xl max-w-2xl mx-auto drop-shadow-md">
-            Forjando futuros brillantes con una educación de excelencia.
-          </p>
-          <Button asChild className="mt-8" size="lg" variant="default">
-            <Link href="/about">
-              Conoce Más <ArrowRight className="ml-2" />
-            </Link>
-          </Button>
-        </div>
-      </section>
+      <HeroSection heroImages={heroImages} />
 
       <section className="py-12 md:py-24">
         <div className="container mx-auto px-4">
@@ -176,15 +130,17 @@ export default function Home() {
               <AnimateOnScroll key={post.slug} delay={index * 0.1}>
                 <Card className="overflow-hidden flex flex-col h-full">
                   <CardHeader className="p-0">
-                    <div className="relative aspect-video">
-                      <Image
-                        src={post.imageUrl}
-                        alt={post.title}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={post.imageHint}
-                      />
-                    </div>
+                    <AnimateOnScroll>
+                      <div className="relative aspect-video">
+                        <Image
+                          src={post.imageUrl}
+                          alt={post.title}
+                          fill
+                          className="object-cover"
+                          data-ai-hint={post.imageHint}
+                        />
+                      </div>
+                    </AnimateOnScroll>
                   </CardHeader>
                   <CardContent className="pt-6 flex-grow">
                     <Badge variant="secondary" className="mb-2">
