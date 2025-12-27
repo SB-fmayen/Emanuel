@@ -26,6 +26,7 @@ import {
 import { placeholderImages } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { blogPosts } from '@/lib/data';
+import { AnimateOnScroll } from '@/components/animate-on-scroll';
 
 export default function Home() {
   const heroImages = placeholderImages.filter(p => p.id.startsWith('hero-'));
@@ -76,129 +77,145 @@ export default function Home() {
 
       <section className="py-12 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold">
-              Bienvenidos al Instituto Emanuel
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
-              Somos una institución comprometida con el desarrollo integral de
-              nuestros estudiantes, ofreciendo una educación de calidad en un
-              ambiente de cooperación y respeto.
-            </p>
-          </div>
+          <AnimateOnScroll>
+            <div className="text-center">
+              <h2 className="text-3xl md:text-4xl font-headline font-bold">
+                Bienvenidos al Instituto Emanuel
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+                Somos una institución comprometida con el desarrollo integral de
+                nuestros estudiantes, ofreciendo una educación de calidad en un
+                ambiente de cooperación y respeto.
+              </p>
+            </div>
+          </AnimateOnScroll>
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            <Card className="text-center transition-transform hover:scale-105 hover:shadow-xl">
-              <CardHeader>
-                <div className="mx-auto bg-primary/10 text-primary p-3 rounded-full w-fit">
-                  <BookOpen className="w-8 h-8" />
-                </div>
-                <CardTitle className="font-headline pt-4">
-                  Nuestra Historia
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Descubre la trayectoria y los valores que nos han guiado.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="text-center transition-transform hover:scale-105 hover:shadow-xl">
-              <CardHeader>
-                <div className="mx-auto bg-primary/10 text-primary p-3 rounded-full w-fit">
-                  <Users className="w-8 h-8" />
-                </div>
-                <CardTitle className="font-headline pt-4">
-                  Comunidad Educativa
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Un equipo de docentes y personal dedicado a la excelencia.</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center transition-transform hover:scale-105 hover:shadow-xl">
-              <CardHeader>
-                <div className="mx-auto bg-primary/10 text-primary p-3 rounded-full w-fit">
-                  <Sparkles className="w-8 h-8" />
-                </div>
-                <CardTitle className="font-headline pt-4">
-                  Actividades
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Fomentamos el talento a través del deporte, arte y más.</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center transition-transform hover:scale-105 hover:shadow-xl">
-              <CardHeader>
-                <div className="mx-auto bg-primary/10 text-primary p-3 rounded-full w-fit">
-                  <Feather className="w-8 h-8" />
-                </div>
-                <CardTitle className="font-headline pt-4">
-                  Niveles Educativos
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Programas académicos diseñados para cada etapa del
-                  aprendizaje.
-                </p>
-              </CardContent>
-            </Card>
+             <AnimateOnScroll delay={0.1}>
+                <Card className="text-center h-full transition-transform hover:scale-105 hover:shadow-xl">
+                  <CardHeader>
+                    <div className="mx-auto bg-primary/10 text-primary p-3 rounded-full w-fit">
+                      <BookOpen className="w-8 h-8" />
+                    </div>
+                    <CardTitle className="font-headline pt-4">
+                      Nuestra Historia
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p>
+                      Descubre la trayectoria y los valores que nos han guiado.
+                    </p>
+                  </CardContent>
+                </Card>
+            </AnimateOnScroll>
+            <AnimateOnScroll delay={0.2}>
+              <Card className="text-center h-full transition-transform hover:scale-105 hover:shadow-xl">
+                <CardHeader>
+                  <div className="mx-auto bg-primary/10 text-primary p-3 rounded-full w-fit">
+                    <Users className="w-8 h-8" />
+                  </div>
+                  <CardTitle className="font-headline pt-4">
+                    Comunidad Educativa
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Un equipo de docentes y personal dedicado a la excelencia.</p>
+                </CardContent>
+              </Card>
+            </AnimateOnScroll>
+            <AnimateOnScroll delay={0.3}>
+              <Card className="text-center h-full transition-transform hover:scale-105 hover:shadow-xl">
+                <CardHeader>
+                  <div className="mx-auto bg-primary/10 text-primary p-3 rounded-full w-fit">
+                    <Sparkles className="w-8 h-8" />
+                  </div>
+                  <CardTitle className="font-headline pt-4">
+                    Actividades
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Fomentamos el talento a través del deporte, arte y más.</p>
+                </CardContent>
+              </Card>
+            </AnimateOnScroll>
+            <AnimateOnScroll delay={0.4}>
+              <Card className="text-center h-full transition-transform hover:scale-105 hover:shadow-xl">
+                <CardHeader>
+                  <div className="mx-auto bg-primary/10 text-primary p-3 rounded-full w-fit">
+                    <Feather className="w-8 h-8" />
+                  </div>
+                  <CardTitle className="font-headline pt-4">
+                    Niveles Educativos
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>
+                    Programas académicos diseñados para cada etapa del
+                    aprendizaje.
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimateOnScroll>
           </div>
         </div>
       </section>
 
       <section className="bg-secondary py-12 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold">
-              Últimas Noticias
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Mantente al día con los eventos y noticias de nuestra comunidad.
-            </p>
-          </div>
+           <AnimateOnScroll>
+            <div className="text-center">
+              <h2 className="text-3xl md:text-4xl font-headline font-bold">
+                Últimas Noticias
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Mantente al día con los eventos y noticias de nuestra comunidad.
+              </p>
+            </div>
+          </AnimateOnScroll>
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {blogPosts.slice(0, 3).map(post => (
-              <Card key={post.slug} className="overflow-hidden flex flex-col">
-                <CardHeader className="p-0">
-                  <div className="relative aspect-video">
-                    <Image
-                      src={post.imageUrl}
-                      alt={post.title}
-                      fill
-                      className="object-cover"
-                      data-ai-hint={post.imageHint}
-                    />
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-6 flex-grow">
-                  <Badge variant="secondary" className="mb-2">
-                    {post.category}
-                  </Badge>
-                  <CardTitle className="font-headline text-xl">
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="hover:text-primary transition-colors"
-                    >
-                      {post.title}
-                    </Link>
-                  </CardTitle>
-                  <CardDescription className="mt-2 line-clamp-3">
-                    {post.excerpt}
-                  </CardDescription>
-                </CardContent>
-                <CardFooter className="flex justify-between items-center text-sm text-muted-foreground">
-                  <span>{post.author}</span>
-                  <span>{post.date}</span>
-                </CardFooter>
-              </Card>
+            {blogPosts.slice(0, 3).map((post, index) => (
+              <AnimateOnScroll key={post.slug} delay={index * 0.1}>
+                <Card className="overflow-hidden flex flex-col h-full">
+                  <CardHeader className="p-0">
+                    <div className="relative aspect-video">
+                      <Image
+                        src={post.imageUrl}
+                        alt={post.title}
+                        fill
+                        className="object-cover"
+                        data-ai-hint={post.imageHint}
+                      />
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pt-6 flex-grow">
+                    <Badge variant="secondary" className="mb-2">
+                      {post.category}
+                    </Badge>
+                    <CardTitle className="font-headline text-xl">
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="hover:text-primary transition-colors"
+                      >
+                        {post.title}
+                      </Link>
+                    </CardTitle>
+                    <CardDescription className="mt-2 line-clamp-3">
+                      {post.excerpt}
+                    </CardDescription>
+                  </CardContent>
+                  <CardFooter className="flex justify-between items-center text-sm text-muted-foreground">
+                    <span>{post.author}</span>
+                    <span>{post.date}</span>
+                  </CardFooter>
+                </Card>
+              </AnimateOnScroll>
             ))}
           </div>
           <div className="text-center mt-12">
-            <Button asChild variant="outline">
-              <Link href="/blog">Ver todas las noticias</Link>
-            </Button>
+            <AnimateOnScroll>
+                <Button asChild variant="outline">
+                  <Link href="/blog">Ver todas las noticias</Link>
+                </Button>
+            </AnimateOnScroll>
           </div>
         </div>
       </section>
