@@ -34,17 +34,15 @@ export default function BlogPage() {
             {blogPosts.map((post, index) => (
               <AnimateOnScroll key={post.slug} delay={index * 0.1}>
                 <Card className="overflow-hidden flex flex-col transition-all hover:shadow-xl hover:-translate-y-1 h-full">
-                  <CardHeader className="p-0">
-                    <Link href={`/blog/${post.slug}`} className="block relative aspect-video">
+                  <Link href={`/blog/${post.slug}`} className="block relative aspect-video overflow-hidden">
                       <Image
                         src={post.imageUrl}
                         alt={post.title}
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
                         data-ai-hint={post.imageHint}
                       />
-                    </Link>
-                  </CardHeader>
+                  </Link>
                   <CardContent className="pt-6 flex-grow">
                     <Badge variant="secondary" className="mb-2">
                       {post.category}

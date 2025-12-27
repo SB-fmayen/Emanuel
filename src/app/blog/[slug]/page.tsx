@@ -20,15 +20,17 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <section className="relative h-[40vh] md:h-[50vh] w-full">
-        <Image
-          src={post.imageUrl}
-          alt={post.title}
-          fill
-          className="object-cover"
-          data-ai-hint={post.imageHint}
-          priority
-        />
+      <section className="relative h-[40vh] md:h-[50vh] w-full overflow-hidden">
+        <AnimateOnScroll className="w-full h-full">
+          <Image
+            src={post.imageUrl}
+            alt={post.title}
+            fill
+            className="object-cover scale-110"
+            data-ai-hint={post.imageHint}
+            priority
+          />
+        </AnimateOnScroll>
         <div className="absolute inset-0 bg-black/60" />
         <div className="container mx-auto px-4 h-full flex flex-col justify-center items-center text-center relative z-10">
           <AnimateOnScroll>
