@@ -117,7 +117,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
            <AnimateOnScroll>
             <div className="text-center">
-              <h2 className="text-3xl md:text-4xl font-headline font-bold">
+              <h2 className="text-3xl md:text-4xl font.headline font-bold">
                 Últimas Noticias
               </h2>
               <p className="mt-4 text-lg text-muted-foreground">
@@ -128,20 +128,18 @@ export default function Home() {
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {blogPosts.slice(0, 3).map((post, index) => (
               <AnimateOnScroll key={post.slug} delay={index * 0.1}>
-                <Card className="overflow-hidden flex flex-col h-full">
-                  <CardHeader className="p-0">
-                    <AnimateOnScroll>
-                      <div className="relative aspect-video">
-                        <Image
-                          src={post.imageUrl}
-                          alt={post.title}
-                          fill
-                          className="object-cover"
-                          data-ai-hint={post.imageHint}
-                        />
-                      </div>
-                    </AnimateOnScroll>
-                  </CardHeader>
+                <Card className="overflow-hidden flex flex-col h-full transition-all hover:shadow-xl hover:-translate-y-1">
+                  <Link href={`/blog/${post.slug}`} className="block group">
+                    <div className="relative aspect-video overflow-hidden">
+                      <Image
+                        src={post.imageUrl}
+                        alt={post.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        data-ai-hint={post.imageHint}
+                      />
+                    </div>
+                  </Link>
                   <CardContent className="pt-6 flex-grow">
                     <Badge variant="secondary" className="mb-2">
                       {post.category}
