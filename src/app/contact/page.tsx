@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -5,9 +7,42 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { schoolInfo, placeholderImages } from "@/lib/data";
+import { useState, type FormEvent } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function ContactPage() {
   const mapImage = placeholderImages.find(p => p.id === 'contact-map');
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    console.log("Form data submitted:", formData);
+    
+    toast({
+      title: "Mensaje Enviado",
+      description: "Gracias por contactarnos. Te responderemos pronto.",
+    });
+
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+  };
+
 
   return (
     <>
@@ -30,11 +65,11 @@ export default function ContactPage() {
                 <CardTitle className="font-headline text-2xl">Envíanos un Mensaje</CardTitle>
               </CardHeader>
               <CardContent>
-                <form className="space-y-4">
-                  <Input placeholder="Tu Nombre" />
-                  <Input type="email" placeholder="Tu Correo Electrónico" />
-                  <Input placeholder="Asunto" />
-                  <Textarea placeholder="Tu Mensaje" rows={5} />
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  <Input name="name" placeholder="Tu Nombre" value={formData.name} onChange={handleChange} required />
+                  <Input name="email" type="email" placeholder="Tu Correo Electrónico" value={formData.email} onChange={handleChange} required />
+                  <Input name="subject" placeholder="Asunto" value={formData.subject} onChange={handleChange} required />
+                  <Textarea name="message" placeholder="Tu Mensaje" rows={5} value={formData.message} onChange={handleChange} required />
                   <Button type="submit" className="w-full" variant="accent">Enviar Mensaje</Button>
                 </form>
               </CardContent>
