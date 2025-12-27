@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/carousel';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Autoplay from "embla-carousel-autoplay";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,6 +59,12 @@ export function HeroSection({ heroImages }: HeroSectionProps) {
     <section ref={componentRef} className="preloader-target relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
       <Carousel
         opts={{ loop: true }}
+        plugins={[
+          Autoplay({
+            delay: 5000,
+            stopOnInteraction: false,
+          }),
+        ]}
         className="w-full h-full"
       >
         <CarouselContent className="h-full">
