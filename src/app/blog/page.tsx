@@ -15,14 +15,32 @@ import { AnimateOnScroll } from "@/components/animate-on-scroll";
 export default function BlogPage() {
   return (
     <>
-      <section className="bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 py-16 text-center">
+      <section className="relative overflow-hidden bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-20 -left-40 w-80 h-80 bg-gradient-to-br from-violet-200 to-violet-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse" />
+          <div className="absolute top-40 -right-32 w-96 h-96 bg-gradient-to-br from-purple-200 to-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse" />
+          <div className="absolute -bottom-20 left-1/3 w-80 h-80 bg-gradient-to-br from-indigo-200 to-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse" />
+          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid-blog" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(139, 92, 246, 0.05)" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid-blog)" />
+          </svg>
+        </div>
+        <div className="container mx-auto px-4 py-20 text-center relative z-10">
           <AnimateOnScroll>
-            <h1 className="text-4xl md:text-5xl font-headline font-bold">
+            <h1 className="text-5xl md:text-7xl font-headline font-extrabold text-slate-900 mb-4">
               Noticias y Eventos
             </h1>
-            <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
-              Mantente al día con las últimas noticias, eventos y logros de la comunidad del Instituto Emanuel.
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="h-1 w-12 bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
+              <div className="w-3 h-3 bg-purple-600 rounded-full" />
+              <div className="h-1 w-12 bg-gradient-to-l from-purple-500 to-transparent rounded-full" />
+            </div>
+            <p className="mt-4 text-lg md:text-xl text-slate-700 max-w-3xl mx-auto">
+              Mantén al día con las últimas noticias, eventos y logros de la comunidad del Instituto Emanuel.
             </p>
           </AnimateOnScroll>
         </div>

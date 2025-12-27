@@ -17,13 +17,31 @@ export default function AboutPage() {
 
   return (
     <>
-      <section className="bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 py-20 text-center">
+      <section className="relative overflow-hidden bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-20 -left-40 w-80 h-80 bg-gradient-to-br from-green-200 to-green-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse" />
+          <div className="absolute top-40 -right-32 w-96 h-96 bg-gradient-to-br from-emerald-200 to-emerald-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse" />
+          <div className="absolute -bottom-20 left-1/3 w-80 h-80 bg-gradient-to-br from-teal-200 to-teal-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse" />
+          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid-about" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(16, 185, 129, 0.05)" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid-about)" />
+          </svg>
+        </div>
+        <div className="container mx-auto px-4 py-20 text-center relative z-10">
           <AnimateOnScroll>
-            <h1 className="text-4xl md:text-6xl font-headline font-bold">
+            <h1 className="text-5xl md:text-7xl font-headline font-extrabold text-slate-900 mb-4">
               Quiénes Somos
             </h1>
-            <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="h-1 w-12 bg-gradient-to-r from-green-500 to-transparent rounded-full" />
+              <div className="w-3 h-3 bg-green-600 rounded-full" />
+              <div className="h-1 w-12 bg-gradient-to-l from-green-500 to-transparent rounded-full" />
+            </div>
+            <p className="mt-4 text-lg md:text-xl text-slate-700 max-w-3xl mx-auto">
               Conoce la historia, filosofía y los valores que hacen del Instituto Emanuel un lugar único para aprender y crecer.
             </p>
           </AnimateOnScroll>

@@ -23,11 +23,19 @@ import { AnimateOnScroll } from '@/components/animate-on-scroll';
 import { HeroSection } from '@/components/hero-section';
 
 export default function Home() {
-  const heroImages = placeholderImages.filter(p => p.id.startsWith('hero-'));
+  // Usar todas las imágenes disponibles para el carrusel del hero
+  const allImages = [
+    { id: 'img-1', description: 'Establecimiento del Instituto Emanuel', imageUrl: '/establecimiento.jpg', imageHint: 'school' },
+    { id: 'img-2', description: 'Alumnos del Instituto Emanuel', imageUrl: '/alumnos.jpg', imageHint: 'students' },
+    { id: 'img-3', description: 'Familia Emanuel', imageUrl: '/Familia Emanuel.jpg', imageHint: 'community' },
+    { id: 'img-4', description: 'Graduados del Instituto Emanuel', imageUrl: '/Graduados.jpg', imageHint: 'graduates' },
+    { id: 'img-5', description: 'Desarrollo Cultural', imageUrl: '/desarrollo cultural.jpg', imageHint: 'culture' },
+    { id: 'img-6', description: 'Eslogan del Instituto Emanuel', imageUrl: '/Eslogan.jpg', imageHint: 'slogan' },
+  ];
 
   return (
     <div className="flex flex-col min-h-dvh">
-      <HeroSection heroImages={heroImages} />
+      <HeroSection heroImages={allImages} />
 
       <section className="py-12 md:py-24">
         <div className="container mx-auto px-4">
