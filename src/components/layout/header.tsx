@@ -49,7 +49,7 @@ export function AppHeader() {
           ))}
         </nav>
         <div className="flex flex-1 items-center justify-end">
-          {mounted && (
+          {mounted ? (
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="md:hidden">
@@ -82,6 +82,8 @@ export function AppHeader() {
                 </div>
               </SheetContent>
             </Sheet>
+          ) : (
+             <div className="w-10 h-10 md:hidden" />
           )}
         </div>
       </div>
