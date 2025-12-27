@@ -49,42 +49,44 @@ export function AppHeader() {
           ))}
         </nav>
         <div className="flex flex-1 items-center justify-end">
-          {mounted ? (
-            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
-                  <Menu />
-                  <span className="sr-only">Toggle Menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left">
-                <div className="flex flex-col h-full">
-                  <div className="flex items-center justify-between border-b pb-4">
-                    <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-                      <Logo />
-                    </Link>
-                  </div>
-                  <nav className="flex flex-col space-y-4 mt-6">
-                    {navLinks.map(({ href, label }) => (
-                      <Link
-                        key={href}
-                        href={href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className={cn(
-                          "text-lg font-medium transition-colors hover:text-primary",
-                          pathname === href ? "text-primary" : "text-foreground"
-                        )}
-                      >
-                        {label}
+          <div className="md:hidden">
+            {mounted ? (
+              <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <Menu />
+                    <span className="sr-only">Toggle Menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="left">
+                  <div className="flex flex-col h-full">
+                    <div className="flex items-center justify-between border-b pb-4">
+                      <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+                        <Logo />
                       </Link>
-                    ))}
-                  </nav>
-                </div>
-              </SheetContent>
-            </Sheet>
-          ) : (
-             <div className="w-10 h-10 md:hidden" />
-          )}
+                    </div>
+                    <nav className="flex flex-col space-y-4 mt-6">
+                      {navLinks.map(({ href, label }) => (
+                        <Link
+                          key={href}
+                          href={href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className={cn(
+                            "text-lg font-medium transition-colors hover:text-primary",
+                            pathname === href ? "text-primary" : "text-foreground"
+                          )}
+                        >
+                          {label}
+                        </Link>
+                      ))}
+                    </nav>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            ) : (
+               <div className="w-10 h-10" />
+            )}
+          </div>
         </div>
       </div>
     </header>
