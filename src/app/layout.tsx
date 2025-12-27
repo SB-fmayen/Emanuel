@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { AppHeader } from '@/components/layout/header';
 import { AppFooter } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
+import { SmoothScroll } from '@/components/smooth-scroll';
 
 export const metadata: Metadata = {
   title: 'Emanuel Institute Hub',
@@ -25,12 +26,14 @@ export default function RootLayout({
       <body
         className={cn('min-h-screen bg-background font-body antialiased')}
       >
-        <div className="relative flex min-h-screen flex-col">
-          <AppHeader />
-          <main className="flex-1">{children}</main>
-          <AppFooter />
-        </div>
-        <Toaster />
+        <SmoothScroll>
+          <div className="relative flex min-h-screen flex-col">
+            <AppHeader />
+            <main className="flex-1">{children}</main>
+            <AppFooter />
+          </div>
+          <Toaster />
+        </SmoothScroll>
       </body>
     </html>
   );
