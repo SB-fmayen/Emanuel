@@ -1,0 +1,100 @@
+/**
+ * This ruleset governs the Emanuel Institute Hub application, providing a secure
+ * yet flexible data access layer suitable for rapid development.
+ *
+ * Core Philosophy:
+ * The security model is "Public Read, Authenticated Write." All data related to
+ * the institute—including general information, news, and activities—is publicly
+ * readable by anyone, including anonymous users. This supports the primary use
+ * case of a public-facing informational website. However, all write operations
+ * (creating, updating, or deleting content) are strictly reserved for
+ * authenticated users, presumed to be administrative staff.
+ *
+ * Data Structure:
+ * The data is organized hierarchically under a top-level `institutes`
+ * collection. All related content, such as `newsPosts` and `activities`,
+ * is stored in subcollections under the specific institute document they belong
+ * to. This path-based nesting provides a clear, queryable structure.
+ * - /institutes/{instituteId}
+ * - /institutes/{instituteId}/newsPosts/{newsPostId}
+ * - /institutes/{instituteId}/activities/{activityId}
+ *
+ * Key Security Decisions:
+ * - Public Read Access: All collections are world-readable to allow the website
+ *   or app to function without requiring users to sign in.
+ * - Authenticated Writes: In the absence of a formal role system, any user
+ *   who is signed in is granted permission to manage content. This is a secure
+ *   default for a prototyping phase where only trusted admins would have accounts.
+ * - Relational Integrity: Rules enforce that subcollection documents (like a
+ *   NewsPost) contain an `instituteId` field that matches the parent institute
+ *   in the path. This link is immutable and cannot be changed after creation.
+ * - No Data Shape Validation: In line with the prototyping philosophy, these rules
+ *   do not enforce the specific schema of documents (e.g., that 'title' is a string).
+ *   This allows the frontend to iterate on data models without backend rule changes.
+ *   Only fields critical for authorization and relational integrity are validated.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ----------------------------------------------------------------------
+    // Helper Functions
+    // ----------------------------------------------------------------------
+
+    /**
+     * Checks if the user is authenticated.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // ----------------------------------------------------------------------
+    // Collection Rules
+    // ----------------------------------------------------------------------
+
+    /**
+     * @description Governs access to Institute documents.
+     * @path /institutes/{instituteId}
+     * @allow (get) Any user, signed in or not, can read an institute's profile.
+     * @allow (create) An authenticated user can create a new institute profile.
+     * @deny (update) An anonymous user cannot modify an institute's details.
+     * @principle Public read access for general information, with writes restricted to authenticated administrators.
+     */
+    match /institutes/{instituteId} {
+      allow get, list: if true;
+      allow create: if isSignedIn() && request.resource.data.id == instituteId;
+      allow update: if isSignedIn() && resource != null && request.resource.data.id == resource.data.id;
+      allow delete: if isSignedIn() && resource != null;
+
+      /**
+       * @description Governs access to News Post subcollections.
+       * @path /institutes/{instituteId}/newsPosts/{newsPostId}
+       * @allow (list) Any user, signed in or not, can list all news posts for an institute.
+       * @allow (create) An authenticated user can publish a new news post for the institute.
+       * @deny (create) An authenticated user cannot create a news post with an `instituteId` that doesn't match the path.
+       * @principle Validates relational integrity by ensuring subcollection documents correctly reference their parent.
+       */
+      match /newsPosts/{newsPostId} {
+        allow get, list: if true;
+        allow create: if isSignedIn() && request.resource.data.instituteId == instituteId && request.resource.data.id == newsPostId;
+        allow update: if isSignedIn() && resource != null && request.resource.data.instituteId == resource.data.instituteId;
+        allow delete: if isSignedIn() && resource != null;
+      }
+
+      /**
+       * @description Governs access to Activity subcollections.
+       * @path /institutes/{instituteId}/activities/{activityId}
+       * @allow (get) Any user, signed in or not, can view the details of an activity.
+       * @allow (create) An authenticated user can add a new activity for the institute.
+       * @deny (update) An anonymous user cannot modify an activity's details.
+       * @principle Enforces that all content is managed by authenticated users while remaining publicly visible.
+       */
+      match /activities/{activityId} {
+        allow get, list: if true;
+        allow create: if isSignedIn() && request.resource.data.instituteId == instituteId && request.resource.data.id == activityId;
+        allow update: if isSignedIn() && resource != null && request.resource.data.instituteId == resource.data.instituteId;
+        allow delete: if isSignedIn() && resource != null;
+      }
+    }
+  }
+}

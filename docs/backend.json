@@ -1,0 +1,214 @@
+{
+  "entities": {
+    "Institute": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Institute",
+      "type": "object",
+      "description": "Represents the Emanuel Institute.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the institute."
+        },
+        "officialName": {
+          "type": "string",
+          "description": "Official name of the institute."
+        },
+        "mineducCodeBasic": {
+          "type": "string",
+          "description": "MINEDUC code for the basic level."
+        },
+        "mineducCodeDiversified": {
+          "type": "string",
+          "description": "MINEDUC code for the diversified level."
+        },
+        "location": {
+          "type": "string",
+          "description": "Location address of the institute."
+        },
+        "contactPhone": {
+          "type": "string",
+          "description": "Contact phone number of the institute."
+        },
+        "levels": {
+          "type": "string",
+          "description": "Educational levels offered by the institute."
+        },
+        "sector": {
+          "type": "string",
+          "description": "Sector to which the institute belongs (e.g., cooperative, private)."
+        },
+        "activities": {
+          "type": "array",
+          "description": "Activities offered by the institute (e.g., sports, art).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "events": {
+          "type": "array",
+          "description": "Celebrated events at the institute (e.g., Day of the Child).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missionStatement": {
+          "type": "string",
+          "description": "The mission statement of the institute."
+        },
+        "values": {
+          "type": "string",
+          "description": "The core values of the institute."
+        }
+      },
+      "required": [
+        "id",
+        "officialName",
+        "location"
+      ]
+    },
+    "NewsPost": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "NewsPost",
+      "type": "object",
+      "description": "Represents a news article or blog post.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the news post."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the news post."
+        },
+        "content": {
+          "type": "string",
+          "description": "Content of the news post."
+        },
+        "author": {
+          "type": "string",
+          "description": "Author of the news post."
+        },
+        "publicationDate": {
+          "type": "string",
+          "description": "Date and time the news post was published.",
+          "format": "date-time"
+        },
+        "instituteId": {
+          "type": "string",
+          "description": "Reference to Institute. (Relationship: Institute 1:N NewsPost)"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "content",
+        "author",
+        "publicationDate",
+        "instituteId"
+      ]
+    },
+    "Activity": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Activity",
+      "type": "object",
+      "description": "Represents an activity offered by the institute.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the activity."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the activity."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the activity."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of the image representing the activity.",
+          "format": "uri"
+        },
+        "instituteId": {
+          "type": "string",
+          "description": "Reference to Institute. (Relationship: Institute 1:N Activity)"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "instituteId"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/institutes/{instituteId}",
+        "definition": {
+          "entityName": "Institute",
+          "schema": {
+            "$ref": "#/backend/entities/Institute"
+          },
+          "description": "Stores information about each institute. The instituteId serves as the document ID.",
+          "params": [
+            {
+              "name": "instituteId",
+              "description": "Unique identifier for the institute."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/institutes/{instituteId}/newsPosts/{newsPostId}",
+        "definition": {
+          "entityName": "NewsPost",
+          "schema": {
+            "$ref": "#/backend/entities/NewsPost"
+          },
+          "description": "Stores news posts associated with a specific institute. The instituteId is part of the path, ensuring clear ownership. The newsPostId serves as the document ID.",
+          "params": [
+            {
+              "name": "instituteId",
+              "description": "Unique identifier for the institute."
+            },
+            {
+              "name": "newsPostId",
+              "description": "Unique identifier for the news post."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/institutes/{instituteId}/activities/{activityId}",
+        "definition": {
+          "entityName": "Activity",
+          "schema": {
+            "$ref": "#/backend/entities/Activity"
+          },
+          "description": "Stores activities offered by a specific institute. The instituteId is part of the path, ensuring clear ownership. The activityId serves as the document ID.",
+          "params": [
+            {
+              "name": "instituteId",
+              "description": "Unique identifier for the institute."
+            },
+            {
+              "name": "activityId",
+              "description": "Unique identifier for the activity."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "This Firestore structure is designed to support the Emanuel Institute Hub's data requirements, focusing on institutes, news posts, and activities. The structure prioritizes clear data organization, scalability, and easy management of content related to the institute. It utilizes path-based ownership and segregation to provide a clear and maintainable structure. Authorization Independence is achieved through path-based ownership and explicit segregation (no `get()` calls in rules)."
+  }
+}
