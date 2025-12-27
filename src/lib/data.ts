@@ -1,3 +1,4 @@
+
 export const schoolInfo = {
   name: 'Instituto Básico por Cooperativa Emanuel',
   shortName: 'Instituto Emanuel',
@@ -14,6 +15,7 @@ export const schoolInfo = {
     'Tecnología',
     'Laboratorio de Ciencias',
     'Biblioteca',
+    'Música'
   ],
   services: ['Cafetería', 'Transporte Escolar', 'Enfermería'],
   events: [
@@ -41,91 +43,97 @@ export const placeholderImages = [
   {
     id: 'hero-1',
     description: 'Students collaborating in a modern classroom',
-    imageUrl: 'https://picsum.photos/seed/hero1/1920/1080',
+    imageUrl: '/images/hero-1.jpg',
     imageHint: 'students classroom',
   },
   {
     id: 'hero-2',
     description: 'School building exterior on a sunny day',
-    imageUrl: 'https://picsum.photos/seed/hero2/1920/1080',
+    imageUrl: '/images/hero-2.jpg',
     imageHint: 'school building',
   },
   {
     id: 'hero-3',
     description: 'Students engaged in a science experiment',
-    imageUrl: 'https://picsum.photos/seed/hero3/1920/1080',
+    imageUrl: '/images/hero-3.jpg',
     imageHint: 'students science',
   },
   {
     id: 'about-us',
     description: 'A group of smiling, diverse students',
-    imageUrl: 'https://picsum.photos/seed/about-us/800/600',
+    imageUrl: '/images/about-us.jpg',
     imageHint: 'diverse students',
+  },
+    {
+    id: 'philosophy',
+    description: 'A student reading a book in a library',
+    imageUrl: '/images/philosophy.jpg',
+    imageHint: 'student reading',
   },
   {
     id: 'activity-sports',
     description: 'Students playing basketball',
-    imageUrl: 'https://picsum.photos/seed/sports/600/400',
+    imageUrl: '/images/activity-sports.jpg',
     imageHint: 'students basketball',
   },
   {
     id: 'activity-art',
     description: 'Student painting on a canvas',
-    imageUrl: 'https://picsum.photos/seed/art/600/400',
+    imageUrl: '/images/activity-art.jpg',
     imageHint: 'student painting',
   },
   {
     id: 'activity-tech',
     description: 'Students working with computers in a lab',
-    imageUrl: 'https://picsum.photos/seed/tech/600/400',
+    imageUrl: '/images/activity-tech.jpg',
     imageHint: 'students computers',
   },
   {
     id: 'activity-science',
     description: 'Close-up of science lab equipment',
-    imageUrl: 'https://picsum.photos/seed/science-lab/600/400',
+    imageUrl: '/images/activity-science.jpg',
     imageHint: 'science lab',
   },
   {
     id: 'activity-library',
     description: 'A quiet and modern school library',
-    imageUrl: 'https://picsum.photos/seed/library/600/400',
+    imageUrl: '/images/activity-library.jpg',
     imageHint: 'school library',
   },
   {
     id: 'activity-music',
     description: 'Students playing musical instruments',
-    imageUrl: 'https://picsum.photos/seed/music/600/400',
+    imageUrl: '/images/activity-music.jpg',
     imageHint: 'students music',
   },
   {
     id: 'contact-map',
     description: 'A map showing the location of the school',
-    imageUrl: 'https://picsum.photos/seed/map/800/600',
+    imageUrl: '/images/contact-map.jpg',
     imageHint: 'map location',
   },
   {
     id: 'blog-1',
     description: 'Students celebrating a cultural event',
-    imageUrl: 'https://picsum.photos/seed/blog1/600/400',
+    imageUrl: '/images/blog-1.jpg',
     imageHint: 'students celebration',
   },
   {
     id: 'blog-2',
     description: 'A science fair project on display',
-    imageUrl: 'https://picsum.photos/seed/blog2/600/400',
+    imageUrl: '/images/blog-2.jpg',
     imageHint: 'science fair',
   },
   {
     id: 'blog-3',
     description: 'School sports team posing with a trophy',
-    imageUrl: 'https://picsum.photos/seed/blog3/600/400',
+    imageUrl: '/images/blog-3.jpg',
     imageHint: 'sports team',
   },
    {
     id: 'blog-4',
     description: 'Students participating in a community service project',
-    imageUrl: 'https://picsum.photos/seed/blog4/600/400',
+    imageUrl: '/images/blog-4.jpg',
     imageHint: 'community service',
   },
 ];
@@ -188,3 +196,5 @@ export const blogPosts = [
     `,
   },
 ];
+
+    
