@@ -28,20 +28,27 @@ export default function ContactPage() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log("Form data submitted:", formData);
-    
-    toast({
-      title: "Mensaje Enviado",
-      description: "Gracias por contactarnos. Te responderemos pronto.",
-    });
-
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+    (async () => {
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+        if (!res.ok) throw new Error('Request failed');
+        toast({
+          title: "Mensaje Enviado",
+          description: "Gracias por contactarnos. Te responderemos pronto.",
+        });
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "No se pudo enviar el mensaje. Intenta de nuevo.",
+          variant: "destructive",
+        });
+      }
+    })();
   };
 
 

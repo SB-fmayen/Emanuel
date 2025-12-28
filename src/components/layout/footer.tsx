@@ -22,6 +22,8 @@ export function AppFooter() {
               <li><Link href="/activities" className="text-muted-foreground hover:text-primary">Actividades</Link></li>
               <li><Link href="/blog" className="text-muted-foreground hover:text-primary">Noticias</Link></li>
               <li><Link href="/contact" className="text-muted-foreground hover:text-primary">Contacto</Link></li>
+              <li><Link href="/privacy" className="text-muted-foreground hover:text-primary">Privacidad</Link></li>
+              <li><Link href="/cookies" className="text-muted-foreground hover:text-primary">Cookies</Link></li>
             </ul>
           </div>
           <div>
@@ -30,9 +32,9 @@ export function AppFooter() {
               <p>{schoolInfo.address}</p>
               <p>Tel: {schoolInfo.phone}</p>
               <div className="flex space-x-4 pt-2">
-                <Link href="#" className="hover:text-primary"><Facebook /></Link>
-                <Link href="#" className="hover:text-primary"><Twitter /></Link>
-                <Link href="#" className="hover:text-primary"><Instagram /></Link>
+                <Link href="#" aria-label="Facebook del Instituto Emanuel" className="hover:text-primary"><Facebook /></Link>
+                <Link href="#" aria-label="Twitter del Instituto Emanuel" className="hover:text-primary"><Twitter /></Link>
+                <Link href="#" aria-label="Instagram del Instituto Emanuel" className="hover:text-primary"><Instagram /></Link>
               </div>
             </div>
           </div>

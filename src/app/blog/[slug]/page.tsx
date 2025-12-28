@@ -11,7 +11,21 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const post = blogPosts.find((p) => p.slug === params.slug);
+  if (!post) return {};
+  return {
+    title: `${post.title} — Instituto Emanuel`,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      images: [post.imageUrl],
+    },
+  };
+}
+
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = blogPosts.find((p) => p.slug === params.slug);
 
   if (!post) {

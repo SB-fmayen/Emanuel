@@ -1,3 +1,12 @@
+export const metadata = {
+  title: 'Instituto Emanuel — Inicio',
+  description: 'Institución educativa en Amatitlán comprometida con el desarrollo integral y la excelencia académica.',
+  openGraph: {
+    title: 'Instituto Emanuel',
+    description: 'Forjando futuros brillantes con educación de excelencia.',
+    images: ['/logo.png'],
+  },
+};
 import Image from 'next/image';
 import Link from 'next/link';
 import {

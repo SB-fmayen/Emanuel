@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,6 +26,7 @@ export function HeroSection({ heroImages }: HeroSectionProps) {
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const buttonRef = useRef(null);
+  const firstImage = heroImages?.[0];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -60,6 +62,17 @@ export function HeroSection({ heroImages }: HeroSectionProps) {
     >
       {/* Fondo con diseño artístico */}
       <div className="absolute inset-0 z-0">
+        {/* Imagen de fondo (opcional) */}
+        {firstImage && (
+          <Image
+            src={firstImage.imageUrl}
+            alt={firstImage.description}
+            fill
+            className="object-cover opacity-25"
+            data-ai-hint={firstImage.imageHint}
+            priority
+          />
+        )}
         {/* Gradiente principal */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50" />
         

@@ -1,3 +1,12 @@
+export const metadata = {
+  title: 'Niveles Educativos — Instituto Emanuel',
+  description: 'Formación académica en niveles Básico (vespertino) y Diversificado.',
+  openGraph: {
+    title: 'Niveles Educativos',
+    description: 'Objetivos y formación en Básico y Diversificado.',
+    images: ['/establecimiento.jpg'],
+  },
+};
 import {
   Accordion,
   AccordionContent,

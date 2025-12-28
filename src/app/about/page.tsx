@@ -1,3 +1,12 @@
+export const metadata = {
+  title: 'Quiénes Somos — Instituto Emanuel',
+  description: 'Historia, filosofía y valores del Instituto Básico por Cooperativa Emanuel.',
+  openGraph: {
+    title: 'Quiénes Somos',
+    description: 'Conoce la comunidad y valores del Instituto Emanuel.',
+    images: ['/alumnos.jpg'],
+  },
+};
 import Image from 'next/image';
 import {
   Card,

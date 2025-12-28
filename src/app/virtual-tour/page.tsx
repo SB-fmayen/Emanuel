@@ -1,6 +1,16 @@
 import { AnimateOnScroll } from "@/components/animate-on-scroll";
 import { VirtualTourClient } from "./virtual-tour-client";
 
+export const metadata = {
+  title: 'Tour Virtual — Instituto Emanuel',
+  description: 'Genera un guion narrado para un tour virtual del instituto con IA.',
+  openGraph: {
+    title: 'Tour Virtual',
+    description: 'Herramienta de IA para marketing y promoción del Instituto Emanuel.',
+    images: ['/establecimiento.jpg'],
+  },
+};
+
 export default function VirtualTourPage() {
   return (
     <>

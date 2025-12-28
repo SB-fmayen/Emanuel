@@ -1,3 +1,12 @@
+export const metadata = {
+  title: 'Actividades y Servicios — Instituto Emanuel',
+  description: 'Oferta extracurricular y servicios que fomentan el desarrollo integral.',
+  openGraph: {
+    title: 'Actividades y Servicios',
+    description: 'Deportes, arte, tecnología y más en el Instituto Emanuel.',
+    images: ['/desarrollo cultural.jpg'],
+  },
+};
 import Image from "next/image";
 import {
   Card,

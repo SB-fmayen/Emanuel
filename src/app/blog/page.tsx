@@ -1,3 +1,12 @@
+export const metadata = {
+  title: 'Noticias y Eventos — Instituto Emanuel',
+  description: 'Últimas noticias y eventos de la comunidad educativa.',
+  openGraph: {
+    title: 'Noticias y Eventos',
+    description: 'Mantente al día con la comunidad del Instituto Emanuel.',
+    images: ['/Graduados.jpg'],
+  },
+};
 import Image from "next/image";
 import Link from "next/link";
 import {
